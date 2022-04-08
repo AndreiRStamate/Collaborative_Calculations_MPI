@@ -1,0 +1,40 @@
+Stamate Robert Andrei, 335CC
+_______________________________________________________________________________
+
+Tema 3
+_______________________________________________________________________________
+tema3.hh:
+	antete + un macro pt afisarea mesajelor de tip M(s,d)
+_______________________________________________________________________________
+
+tema3.cc:
+_______________________________________________________________________________
+	Partea 1:
+			- Pentru stocarea topologiei am folosit un vector de perechi de tip
+		<int, vector<int>> "perechi";
+			- In fiecare dintre cele 3 procese coordonator am citit (din fisierul
+		corespunzator) nr de workeri si indicii acestora;
+			- Din procesul 0 am trimis topologia partiala catre procesul 2;
+			- Din procesul 1 am trimis topologia partiala catre procesul 2;
+			- Din procesul 2 am trimis restul de topologii catre procesele 0
+			si 1 pentru a intregi topologia.
+			
+			- Dupa crearea topologiilor in procesele coordonator am trimis
+			si catre procesele worker cu ajutorul functiilor 
+			sendRankToWorkers(...) si sendTopologiToWorkers(...);
+_______________________________________________________________________________			
+	Partea 2:
+			- Am generat vectorul v[k] = k in procesul 0;
+			- Am trimis vectorul v din 0 catre 2; Apoi din 2 catre 1;
+			- Din fiecare proces coordonator am trimis chunk-uri de vector
+			catre procesele worker corespunzatoare;
+			- In procesele worker am dublat valorile primite si le-am trimis
+			inapoi coordonatorului corespunzator;
+			- Pentru bonus am trimis bucata coordonaturlui 1 catre procesul 2
+			si apoi din 2 am trimis bucatile 1 si 2 catre procesul 0;
+			- Pentru rezolvarea bonusului am recreat vectorul perechi, aranjand
+			elementele intr-o ordine stabilita in rezolvarea fara bonus:
+			Procesul 0 are elementele in ordine 0,1,2;
+			Procesul 1 are elementele in ordine 1,0,2;
+			Procesul 2 are elementele in ordine 2,0,1;
+_______________________________________________________________________________
